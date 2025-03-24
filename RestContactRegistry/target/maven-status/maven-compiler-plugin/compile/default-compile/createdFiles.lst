@@ -1,0 +1,6 @@
+com\zurion\restcontactregistry\requests\ContactRequest.class
+com\zurion\restcontactregistry\daos\ContactDAO.class
+com\zurion\restcontactregistry\utils\ContactServletValidator.class
+com\zurion\restcontactregistry\utils\DatabaseConnection.class
+com\zurion\restcontactregistry\models\Contact.class
+com\zurion\restcontactregistry\servlets\ContactServlet.class
