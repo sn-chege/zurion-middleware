@@ -1,0 +1,6 @@
+com\zurion\soapcontactregistry\daos\ContactDAO.class
+com\zurion\soapcontactregistry\services\ContactService.class
+com\zurion\soapcontactregistry\models\Contact.class
+com\zurion\soapcontactregistry\services\ContactServiceImpl.class
+com\zurion\soapcontactregistry\ContactPublisher.class
+com\zurion\soapcontactregistry\utils\DatabaseConnection.class
