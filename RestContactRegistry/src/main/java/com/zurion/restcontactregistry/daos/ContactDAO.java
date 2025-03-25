@@ -85,6 +85,36 @@ public class ContactDAO {
         }
         return null;
     }
+    
+    public List<Contact> searchContacts(String hashedPhone, String maskedName, String maskedPhone, String organization) {
+        List<Contact> contacts = new ArrayList<>();
+        String sql = "SELECT * FROM contacts WHERE hashed_phone = ? OR (masked_name = ? AND masked_phone = ?) OR organization = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, hashedPhone != null ? hashedPhone : ""); 
+            stmt.setString(2, maskedName != null ? maskedName : "");
+            stmt.setString(3, maskedPhone != null ? maskedPhone : "");
+            stmt.setString(4, organization != null ? organization : "");
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Contact contact = new Contact(
+                    rs.getString("full_name"),
+                    rs.getString("phone_number"),
+                    rs.getString("email"),
+                    rs.getString("id_number"),
+                    rs.getString("date_of_birth"),
+                    rs.getString("gender"),
+                    rs.getString("organization")
+                );
+                contact.setId(rs.getInt("id"));
+                contacts.add(contact);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return contacts;
+    }
 
     public boolean updateContact(Contact contact) {
         String query = "UPDATE contacts SET full_name=?, phone_number=?, email=?, id_number=?, date_of_birth=?, gender=?, organization=?, masked_name=?, masked_phone=?, hashed_phone=? WHERE id=?";
@@ -141,23 +171,34 @@ public class ContactDAO {
 
     // Function to mask phone number (e.g., 0712345678 → 07*****678)
     private String maskPhoneNumber(String phoneNumber) {
+        // Remove the leading +
+        if (phoneNumber.startsWith("+")) {
+            phoneNumber = phoneNumber.substring(1); 
+        }
+
         if (phoneNumber.length() >= 7) {
             return phoneNumber.substring(0, 2) + "*****" + phoneNumber.substring(phoneNumber.length() - 3);
         }
-        return phoneNumber; // Return as is if too short
+        // Return as is if too short
+        return phoneNumber; 
     }
-
-    // Function to mask full name (e.g., John Doe → J*** D**)
+    
+    // Function to mask full name (e.g., John Doe → J***-D**)
     private String maskName(String fullName) {
         String[] parts = fullName.split(" ");
         StringBuilder maskedName = new StringBuilder();
-        for (String part : parts) {
-            if (part.length() > 1) {
-                maskedName.append(part.charAt(0)).append("*".repeat(part.length() - 1)).append(" ");
+
+        for (int i = 0; i < parts.length; i++) {
+            if (parts[i].length() > 1) {
+                maskedName.append(parts[i].charAt(0)).append("*".repeat(parts[i].length() - 1));
             } else {
-                maskedName.append(part).append(" ");
+                maskedName.append(parts[i]);
+            }
+            if (i < parts.length - 1) {
+                maskedName.append("-"); // Use hyphen instead of space
             }
         }
-        return maskedName.toString().trim();
+        return maskedName.toString();
     }
+
 }

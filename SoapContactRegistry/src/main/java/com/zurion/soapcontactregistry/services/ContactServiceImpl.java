@@ -9,7 +9,7 @@ import com.zurion.soapcontactregistry.daos.ContactDAO;
 import jakarta.jws.WebService;
 import java.util.List;
 
-@WebService(endpointInterface = "com.zurion.contactregistry.services.ContactService")
+@WebService(endpointInterface = "com.zurion.soapcontactregistry.services.ContactService")
 public class ContactServiceImpl implements ContactService {
 
     private ContactDAO contactDAO = new ContactDAO(); // Instantiate ContactDAO

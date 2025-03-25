@@ -1,5 +1,9 @@
 package com.zurion.soapcontactregistry.utils;
 
+/**
+ *
+ * @author stanl
+ */
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -7,10 +11,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-/**
- *
- * @author stanl
- */
 public class DatabaseConnection {
 
     private static String URL;
