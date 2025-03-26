@@ -87,7 +87,7 @@ Ensure you have the following installed:
 ## Endpoints
 ### SOAP
 - `http://localhost:8084/ContactService?wsdl`
-- Supports operations like `getAllContacts()`, `insertContact()`, `getContactById()`, `getContactsByOrganization()`.
+- Supports  `getAllContacts()` operation.
 
 ### REST
 - `GET /api/contacts` - Fetch all contacts.
