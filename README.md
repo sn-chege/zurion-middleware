@@ -15,10 +15,11 @@ zurion-middleware/
 |   |   |   |   |-- com/
 |   |   |   |   |   |-- zurion/
 |   |   |   |   |   |   |-- restcontactregistry/
-|   |   |   |   |   |   |   |-- controllers/  # REST controllers
-|   |   |   |   |   |   |   |-- daos/         # Data Access Objects
-|   |   |   |   |   |   |   |-- models/       # Model classes
-|   |   |   |   |   |   |   |-- services/     # Service layer
+|   |   |   |   |   |   |   |-- servlets/
+|   |   |   |   |   |   |   |-- utils/        
+|   |   |   |   |   |   |   |-- daos/         
+|   |   |   |   |   |   |   |-- models/       
+|   |   |   |   |   |   |   |-- requests/     
 |-- SoapContactRegistry/
 |   |-- src/
 |   |   |-- main/
@@ -26,10 +27,10 @@ zurion-middleware/
 |   |   |   |   |-- com/
 |   |   |   |   |   |-- zurion/
 |   |   |   |   |   |   |-- soapcontactregistry/
-|   |   |   |   |   |   |   |-- services/  # SOAP services
-|   |   |   |   |   |   |   |-- daos/      # Data Access Objects
-|   |   |   |   |   |   |   |-- models/    # Model classes
-|   |   |   |   |   |   |   |-- utils/     # Utility classes
+|   |   |   |   |   |   |   |-- services/  
+|   |   |   |   |   |   |   |-- daos/      
+|   |   |   |   |   |   |   |-- models/    
+|   |   |   |   |   |   |   |-- utils/     
 ```
 
 ## Setup Instructions
