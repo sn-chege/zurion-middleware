@@ -67,7 +67,7 @@ Ensure you have the following installed:
 1. Navigate to `RestContactRegistry` in the project.
 2. TO COMPILE: Right click on `RestContactRegistry` and click `Clean and Build`
 3. TO RUN: Right click on `RestContactRegistry` and click `Run`
-4. The service will be accessible at `http://localhost:8080/api/contacts`.
+4. The service will be accessible at `http://localhost:8087/RestContactRegistry/contacts`.
 
 ## Key Components
 
