@@ -77,52 +77,36 @@ public class ContactServlet extends HttpServlet {
              out.write("{\"message\": \"Invalid contact ID\"}");
          }
     }
+  
      
-    // Handle POST requests (add a contact)
-    //    @Override
-    //    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    //        response.setContentType("application/json");
-    //
-    //        // Validate request
-    //        String errors = ContactServletValidator.validateContactRequest(request);
-    //
-    //        if (errors != null) {
-    //            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-    //            response.getWriter().write(errors);
-    //            return;
-    //        }
-    //
-    //        // If valid, process request
-    //        response.getWriter().write("{\"message\": \"Contact saved successfully.\"}");
-    //    }
-    // Handle POST requests (add a contact)
+    //Handle POST requests (add a contact)
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        // Validate request
-        String errors = ContactServletValidator.validateContactRequest(request);
-        if (errors != null) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().write(errors);
-            return;
-        }
+       //  Validate request
+                String errors = ContactServletValidator.validateContactRequest(request);
+                if (errors != null) {
+                    response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                    response.getWriter().write(errors);
+                    return;
+                }
 
-        // Parse request data
-        BufferedReader reader = request.getReader();
-        Contact contact = gson.fromJson(reader, Contact.class);
+//        // Parse request data
+//        BufferedReader reader = request.getReader();
+//        Contact contact = gson.fromJson(reader, Contact.class);
+//
+//        // Add contact to database
+//        boolean success = contactDAO.addContact(contact);
 
-        // Add contact to database
-        boolean success = contactDAO.addContact(contact);
-
-        if (success) {
-            response.setStatus(HttpServletResponse.SC_CREATED);
-            response.getWriter().write("{\"message\": \"Contact saved successfully.\"}");
-        } else {
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            response.getWriter().write("{\"message\": \"Failed to save contact.\"}");
-        }
+//        if (success) {
+//            response.setStatus(HttpServletResponse.SC_CREATED);
+//            response.getWriter().write("{\"message\": \"Contact saved successfully.\"}");
+//        } else {
+//            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+//            response.getWriter().write("{\"message\": \"Failed to save contact.\"}");
+//        }
     }
 
 
